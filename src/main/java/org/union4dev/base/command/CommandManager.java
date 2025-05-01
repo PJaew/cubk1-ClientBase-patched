@@ -73,20 +73,20 @@ public class CommandManager implements Initializer {
                 };
 
                 for (Method method : clazz.getDeclaredMethods()) {
-                    if(method.isAnnotationPresent(Command.Handler.class)){
-                        if(method.getParameters().length > 0){
-                            if(method.getParameters()[0].getType() == String[].class){
+                    if (method.isAnnotationPresent(Command.Handler.class)){
+                        if (method.getParameters().length > 0){
+                            if (method.getParameters()[0].getType() == String[].class){
                                 handle.getHandlers().add(method);
-                            }else {
+                            } else {
                                 logger.warn("Command class {} method {} has wrong parameters",clazz.getName(),method.getName());
                             }
-                        }else {
+                        } else {
                             logger.warn("Command class {} method {} has no parameters",clazz.getName(),method.getName());
                         }
                     }
                 }
 
-                if(handle.getHandlers().size() > 0){
+                if (handle.getHandlers().size() > 0){
                     register(handle,command.value());
                 }
             }
